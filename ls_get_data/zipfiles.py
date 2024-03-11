@@ -25,5 +25,5 @@ def zip_subdirectories(directory_path):
 
 
 if __name__ == '__main__':
-    dir_path = r'C:\Users\Admin\Downloads\original-data'
+    dir_path = r'C:\Users\Admin\Downloads\original-data(2)'
     zip_subdirectories(dir_path)
