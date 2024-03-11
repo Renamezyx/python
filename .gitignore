@@ -3,4 +3,4 @@ venv
 .idea
 */venv
 */.idea
-*/_pycache_
+*/__pycache__
