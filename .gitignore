@@ -1,10 +1,10 @@
 logs
 venv
-.idea
 */.venv
 */venv
-*/.idea
+.idea/
 */__pycache__
 */logs
 */build
 dist/
+__pycache__/
