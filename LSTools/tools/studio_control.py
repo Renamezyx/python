@@ -1,4 +1,7 @@
+import ast
+import json
 import os
+import re
 
 from utils.json_file_handler import JSONFileHandler
 
@@ -34,6 +37,21 @@ class StudioControl:
                 total_size += os.path.getsize(file_path)
         return total_size
 
+    @property
+    def link_mic_battle_pb_by_log(self):
+        with open(os.path.join(self.studio_data_path, "logs", "renderer.log"), "r", encoding="utf-8") as log_file:
+            pb_list = []
+            pb_re_str = r'LinkMicBattlePB (.*)'
+            for line in log_file.readlines():
+                res = re.search(pb_re_str, line)
+                if res:
+                    pb_list.append(res.group(1))
+            i = re.sub(r'(\w+): ', r'"\1":', pb_list[-1])
+            i = i.replace("'", '"')
+            i = json.dumps(i)
+            return i
+        return None
+
 
 studio = StudioControl()
 
@@ -50,7 +68,7 @@ def open_language_dir():
 
 def switch_branch():
     if studio.branch == "studio/release/stable-0.53":
-        value = ""
+        value = "1"
     else:
         value = "studio/release/stable-0.53"
     JSONFileHandler.update_json(
@@ -61,7 +79,6 @@ def switch_branch():
 
 def update_effects():
     local_store_path = os.path.join(studio.studio_data_path, "TTStore", "localStore.json")
-    os.remove(local_store_path)
     if os.path.exists(local_store_path):
         os.remove(local_store_path)
 
@@ -72,4 +89,4 @@ def clear_screen():
 
 
 if __name__ == '__main__':
-    update_effects()
+    print(studio.link_mic_battle_pb_by_log)
