@@ -20,10 +20,19 @@ class MainWindow(QWidget):
 
         # 将按钮点击事件与自定义方法连接
         self.bt_open_log.clicked.connect(open_logs_dir)
+        self.bt_language.clicked.connect(open_language_dir)
+        self.bt_branch.clicked.connect(switch_branch)
+        self.bt_update_effects.clicked.connect(update_effects)
+        self.bt_clear_screen.clicked.connect(clear_screen)
 
         # 使用垂直布局管理器来安排组件
         layout = QVBoxLayout()
         layout.addWidget(self.bt_open_log)
+        layout.addWidget(self.bt_language)
+        layout.addWidget(self.bt_branch)
+        layout.addWidget(self.bt_update_effects)
+        layout.addWidget(self.bt_clear_screen)
+
         self.setLayout(layout)
 
 
