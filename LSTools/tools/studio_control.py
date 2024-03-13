@@ -71,6 +71,7 @@ def open_language_dir():
 
 
 def switch_branch():
+    build_id = "11654054"
     if studio.branch == "studio/release/stable":
         value = "1"
     else:
@@ -78,6 +79,9 @@ def switch_branch():
     JSONFileHandler.update_json(
         file_path=os.path.join(studio.studio_file_path, studio.version, 'resources\\app\\package.json'),
         key="branch", value=value)
+    JSONFileHandler.update_json(
+        file_path=os.path.join(studio.studio_file_path, studio.version, 'resources\\app\\package.json'),
+        key="build_id", value=build_id)
     return value
 
 
