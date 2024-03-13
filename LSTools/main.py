@@ -14,7 +14,7 @@ class MainWindow(QWidget):
         self.setWindowTitle("tools")
         self.resize(800, 600)
 
-        label_toast = QLabel("status")
+        # label_toast = QLabel("status")
 
         # 创建按钮
         bt_open_log = QPushButton("日志文件夹", self)
@@ -34,7 +34,7 @@ class MainWindow(QWidget):
 
         # 使用网格布局管理器
         grid_layout = QGridLayout(self)
-        grid_layout.addWidget(label_toast, 0, 1)  # 第二行第二列
+        # grid_layout.addWidget(label_toast, 0, 1)  # 第二行第二列
         grid_layout.addWidget(bt_open_log, 1, 0)  # 第一行第一列
         grid_layout.addWidget(bt_language, 1, 1)  # 第一行第二列
         grid_layout.addWidget(bt_branch, 1, 2)  # 第一行第三列
