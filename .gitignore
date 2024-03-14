@@ -1,0 +1,10 @@
+logs
+venv
+*/.venv
+*/venv
+.idea/
+*/__pycache__
+*/logs
+*/build
+dist/
+__pycache__/
