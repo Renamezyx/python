@@ -59,6 +59,7 @@ class StudioControl:
 
 studio = StudioControl()
 
+def callback(func,):
 
 def open_logs_dir():
     studio.open_dir("{0}\\logs".format(studio.studio_data_path))
