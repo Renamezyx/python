@@ -59,18 +59,30 @@ class StudioControl:
 
 studio = StudioControl()
 
-def callback(func,):
-    pass
+
+def catch_exceptions(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            return str(e)  # 返回异常信息字符串
+
+    return wrapper
+
+
+@catch_exceptions
 def open_logs_dir():
     studio.open_dir("{0}\\logs".format(studio.studio_data_path))
 
 
+@catch_exceptions
 def open_language_dir():
     if studio.version:
         studio.open_dir(
             '{0}\\{1}\\resources\\app\\locales\\Live_Studio'.format(studio.studio_file_path, studio.version))
 
 
+@catch_exceptions
 def switch_branch():
     build_id = "11654054"
     if studio.branch == "studio/release/stable":
@@ -86,17 +98,20 @@ def switch_branch():
     return value
 
 
+@catch_exceptions
 def update_effects():
     local_store_path = os.path.join(studio.studio_data_path, "TTStore", "localStore.json")
     if os.path.exists(local_store_path):
         os.remove(local_store_path)
 
 
+@catch_exceptions
 def clear_screen():
     store_path = os.path.join(studio.studio_data_path, "TTStore", "store.json")
     JSONFileHandler.delete_json_key(store_path, "source")
 
 
+@catch_exceptions
 def generate_finsh_pk():
     battle_status_dict = {member.value: member.name for member in BattleStatusEnum}
     print(battle_status_dict)

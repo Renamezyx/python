@@ -35,6 +35,7 @@ class JSONFileHandler:
             print(f"数据已成功写入到文件 '{file_path}'.")
         except Exception as e:
             print(f"写入文件 '{file_path}' 时发生错误: {e}")
+            raise Exception(f"写入文件 '{file_path}' 时发生错误: {e}")
 
     @staticmethod
     def update_json(file_path, key, value):
@@ -64,4 +65,3 @@ class JSONFileHandler:
                     JSONFileHandler.write_json_file(file_path, data)
                 else:
                     print(f"键 '{key}' 不存在于JSON文件 '{file_path}' 中.")
-
