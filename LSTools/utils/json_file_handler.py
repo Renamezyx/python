@@ -11,7 +11,8 @@ class JSONFileHandler:
         :return: JSON文件内容（字典）
         """
         try:
-            with open(file_path, 'r') as file:
+
+            with open(file_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
                 return data
         except FileNotFoundError:
@@ -55,10 +56,12 @@ class JSONFileHandler:
         :param file_path: JSON文件路径
         :param key: 要删除的键名
         """
-        data = JSONFileHandler.read_json_file(file_path)
-        if data:
-            if key in data:
-                del data[key]
-                JSONFileHandler.write_json_file(file_path, data)
-            else:
-                print(f"键 '{key}' 不存在于JSON文件 '{file_path}' 中.")
+        if os.path.exists(file_path):
+            data = JSONFileHandler.read_json_file(file_path)
+            if data:
+                if key in data:
+                    del data[key]
+                    JSONFileHandler.write_json_file(file_path, data)
+                else:
+                    print(f"键 '{key}' 不存在于JSON文件 '{file_path}' 中.")
+
